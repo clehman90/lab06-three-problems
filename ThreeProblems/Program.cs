@@ -8,8 +8,12 @@
 * practices decisions and one of the four loops.
 */
 
+using System.Net.Sockets;
+using System.Numerics;
+
 System.Console.WriteLine("=== CSCI 1250 Lab 06 ===");
 int choice = 0;
+Random rng = new Random(4000);
 
 // do while: this do while runs the entire program while choice is between 1 and 4, when someone enters 5, the program ends
 do
@@ -66,12 +70,66 @@ if (choice == 1 || choice == 4)
 if (choice == 2 || choice == 4)
 {
     // exercise 2
+    System.Console.WriteLine("=== Exercise 2: The Dice Table ===");
+    int roll = 0;
+    string rollAgain;
+    int winners = 0;
+    do
+        {
+            roll ++;
+            int dice1 = rng.Next(1,7);
+            int dice2 = rng.Next(1,7);
+            System.Console.Write("Roll " + roll + ": " + dice1 + " and " + dice2 + ", " + "total " + (dice1 + dice2) + ". ");
+            if (dice1 + dice2 == 7 || dice1 + dice2 == 11)
+            {
+             System.Console.WriteLine(" A winner.");
+             winners++;
+            }
+            else if (dice1 == 2 && dice2 == 2 || dice1 == 3 && dice2 == 3 || dice1 == 4 && dice2 == 4 ||dice1 == 5 && dice2 == 5 ||dice1 == 6 && dice2 == 6)
+            {
+                System.Console.WriteLine(" Doubles!");
+            }
+            else if (dice1 == 1 && dice2 == 1)
+            {
+                System.Console.WriteLine(" Snake eyes.");
+            }
+            System.Console.Write("Roll again? (y/n): ");
+            rollAgain = Console.ReadLine();
+        } while (rollAgain != "n");
+        System.Console.WriteLine("You rolled " + roll + " times and won " + winners + " times.");
 }
 
 if (choice == 3 || choice == 4)
 {
     // exercise 3
+    System.Console.WriteLine("=== Exercise 3: The Score Report ===");
+    int score = 1;
+    int[] scores;
+    scores = new int[6];
+    int passing = 0;
+    int highest = scores[0];
+    for (int i = 0; score < scores.Length; i++)
+        {
+            System.Console.Write("Score " + score + ": ");
+            scores[i] = Convert.ToInt32(Console.ReadLine());
+            score++;
+        }
+    foreach (int value in scores)
+        {
+            if (score >= 60)
+            {
+                passing++;
+            }
+            highest = Math.Max(highest, Convert.ToByte(scores));
+        int total = scores[1] + scores[2] + scores[3] + scores[4] + scores[5];
+        double average = total / scores.Length;
+        System.Console.WriteLine("Scores entered: " + scores.Length);
+        System.Console.WriteLine("Total: " + total);
+        System.Console.WriteLine("Average: " + average);
+        System.Console.WriteLine("Highest: " + highest);
+        System.Console.WriteLine("Passing: " + passing + " of " + scores.Length);
 }
+        }
 } while (choice != 5);
 
 System.Console.WriteLine("Goodbye.");
