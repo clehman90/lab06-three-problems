@@ -103,9 +103,9 @@ if (choice == 3 || choice == 4)
 {
     // exercise 3
     System.Console.WriteLine("=== Exercise 3: The Score Report ===");
-    int score = 1;
+    int score = 0;
     int[] scores;
-    scores = new int[6];
+    scores = new int[5];
     int passing = 0;
     int highest = scores[0];
     for (int i = 0; score < scores.Length; i++)
@@ -121,14 +121,14 @@ if (choice == 3 || choice == 4)
                 passing++;
             }
             highest = Math.Max(highest, Convert.ToByte(scores));
-        int total = scores[1] + scores[2] + scores[3] + scores[4] + scores[5];
+        }
+        int total = scores[0] + scores[1] + scores[2] + scores[3] + scores[4];
         double average = total / scores.Length;
         System.Console.WriteLine("Scores entered: " + scores.Length);
         System.Console.WriteLine("Total: " + total);
-        System.Console.WriteLine("Average: " + average);
-        System.Console.WriteLine("Highest: " + highest);
-        System.Console.WriteLine("Passing: " + passing + " of " + scores.Length);
-}
+        System.Console.WriteLine("Average: " + average.ToString("F1"));
+        System.Console.WriteLine($"Highest: {highest}");
+        System.Console.WriteLine($"Passing: {passing} of {scores.Length}");
         }
 } while (choice != 5);
 
