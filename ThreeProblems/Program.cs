@@ -74,6 +74,7 @@ if (choice == 2 || choice == 4)
     int roll = 0;
     string rollAgain;
     int winners = 0;
+    // this is a do while because it runs the code of rolling the dice as long as the user does not enter "n" to end it
     do
         {
             roll ++;
@@ -108,12 +109,14 @@ if (choice == 3 || choice == 4)
     scores = new int[5];
     int passing = 0;
     int highest = scores[0];
+    // this is a for loop because it runs this code for each value in the array
     for (int i = 0; score < scores.Length; i++)
         {
             System.Console.Write("Score " + score + ": ");
             scores[i] = Convert.ToInt32(Console.ReadLine());
             score++;
         }
+        // similar to the previous loop, this foreach looks at each value in the array although it doesn't need an array
     foreach (int value in scores)
         {
             if (score >= 60)
